@@ -168,7 +168,7 @@ async def accept_status(user_id, callback_query):
                     parse_mode="HTML"
                 )
                 try:
-                    admins = get_admin_ids()
+                    admins = await get_admin_ids()
                     for ids in admins:
                         await callback_query.message.bot.send_message(
                             ids,
@@ -211,7 +211,7 @@ async def reject_status(user_id, callback_query):
                 parse_mode="HTML"
             )
             try:
-                admins = get_admin_ids()
+                admins = await get_admin_ids()
                 for ids in admins:
                     await callback_query.message.bot.send_message(
                         ids,
@@ -253,7 +253,7 @@ async def ban_status(user_id, callback_query):
                 parse_mode="HTML"
             )
             try:
-                admins = get_admin_ids()
+                admins = await get_admin_ids()
                 for ids in admins:
                     await callback_query.message.bot.send_message(
                         ids,

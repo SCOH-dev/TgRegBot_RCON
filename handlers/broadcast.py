@@ -21,8 +21,10 @@ from aiogram.types import ReplyKeyboardRemove
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+from colorama import Fore
 
 from config import USERS
+from utils.msk_time import get_msk_time_now
 from database.check import check_adm
 
 broadcast_router = Router(name="broadcast_router")
@@ -40,6 +42,13 @@ async def start_broadcast(message: types.Message, state: FSMContext):
     """
     Команда для начала массовой рассылки. Доступно только администраторам.
     """
+    print(
+        "📚  "
+        + Fore.BLUE +
+        f"[{get_msk_time_now()}] "
+        + Fore.RED +
+        f"{message.from_user.id} Использовал команду /broadcast"
+    )
     if not await check_adm(int(message.from_user.id)):
         await message.answer(
             "⛔ <b>Доступ запрещён</b>", 
